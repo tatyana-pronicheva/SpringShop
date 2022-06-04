@@ -34,4 +34,15 @@ public class ProductsController {
         return "redirect:/catalog";
     }
 
+    @GetMapping(value = "/costPlus")
+    public String costPlus (@RequestParam int id){
+        productRepository.findById(id).costPlus();
+        return "redirect:/catalog";
+    }
+    @GetMapping(value = "/costMinus")
+    public String costMinus (@RequestParam int id){
+        productRepository.findById(id).costMinus();
+        return "redirect:/catalog";
+    }
+
 }

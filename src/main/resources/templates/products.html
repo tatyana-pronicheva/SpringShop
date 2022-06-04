@@ -17,14 +17,19 @@
             <td>ID</td>
             <td>Название</td>
             <td>Цена</td>
-            <td></td>
         </tr>
         </thead>
         <tbody>
         <tr th:each="p : ${products}">
             <td th:text="${p.id}"></td>
             <td th:text="${p.title}"></td>
-            <td th:text="${p.cost}"></td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
+                <a type="button" class="btn btn-outline-primary" th:href="@{'/costMinus?id='+${p.id}}">-</a>
+                <button type="button" class="btn btn-outline-primary" disabled th:text="${p.cost}"></button>
+                <a type="button" class="btn btn-outline-primary" th:href="@{'/costPlus?id='+${p.id}}">+</a>
+                </div>
+            </td>
         </tr>
         </tbody>
     </table>

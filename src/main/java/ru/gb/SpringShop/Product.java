@@ -34,4 +34,11 @@ public class Product {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public void costPlus(){
+        cost++;
+    }
+    public void costMinus(){
+        cost--;
+    }
 }
