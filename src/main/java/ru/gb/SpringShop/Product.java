@@ -1,15 +1,25 @@
 package ru.gb.SpringShop;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="products_list")
 public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+    @Column(name = "title")
     private String title;
+    @Column(name = "cost")
     private int cost;
 
-    public Product(int id, String title, int cost) {
-        this.id = id;
+    public Product(String title, int cost) {
         this.title = title;
         this.cost = cost;
     }
+    public Product() {}
 
     public int getCost() {
         return cost;
@@ -35,10 +45,8 @@ public class Product {
         this.title = title;
     }
 
-    public void costPlus(){
-        cost++;
-    }
-    public void costMinus(){
-        cost--;
+    @Override
+    public String toString() {
+        return String.format("Product [id = %d, title = %s, price = %d]", id, title, cost);
     }
 }
