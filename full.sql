@@ -1,5 +1,11 @@
 START TRANSACTION;
+DROP TABLE IF EXISTS customer_product;
 DROP TABLE IF EXISTS products_list;
 CREATE TABLE products_list (id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(50), cost INT);
 INSERT INTO products_list (title, cost) VALUES ('Milk', 50), ('Bread', 20), ('Meat', 200), ('Butter', 200), ('Eggs', 100);
+DROP TABLE IF EXISTS customers;
+CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50));
+INSERT INTO customers (name) VALUES ('Anna Chizova'), ('Czabin Chzou'), ('Brad Pitt'), ('Artuom Ivanov');
+CREATE TABLE customer_product (customer_id INT, product_id INT, FOREIGN KEY (customer_id) REFERENCES customers (id), FOREIGN KEY (product_id) REFERENCES products_list (id));
+INSERT INTO customer_product (customer_id, product_id) VALUES (1,2), (1,3), (1,4), (2,1), (3,1), (3,2), (3,3), (3,4), (3,5);
 COMMIT;
