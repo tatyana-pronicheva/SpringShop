@@ -1,6 +1,7 @@
 package ru.gb.SpringShop;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="products_list")
@@ -14,6 +15,13 @@ public class Product {
     private String title;
     @Column(name = "cost")
     private int cost;
+    @ManyToMany
+    @JoinTable(
+            name = "customer_product",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "customer_id")
+    )
+    private List<Customer> customers;
 
     public Product(String title, int cost) {
         this.title = title;
@@ -43,6 +51,14 @@ public class Product {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
     @Override
